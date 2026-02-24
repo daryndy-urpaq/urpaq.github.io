@@ -445,6 +445,309 @@
             padding: 30px;
             margin-top: 60px;
         }
+    /* ===== АДАПТАЦИЯ ДЛЯ ТЕЛЕФОНОВ ===== */
+@media screen and (max-width: 768px) {
+    /* Шапка сайта */
+    .header {
+        padding: 10px;
+        grid-template-columns: 1fr 1fr;
+        gap: 5px;
+    }
+
+    .header-left, .header-right {
+        font-size: 10px;
+        line-height: 1.2;
+    }
+
+    .header-left {
+        grid-column: 1;
+        grid-row: 2;
+        text-align: left;
+    }
+
+    .header-right {
+        grid-column: 2;
+        grid-row: 2;
+        text-align: right;
+    }
+
+    .logo {
+        width: 60px;
+        height: 60px;
+        margin: 0 auto;
+        grid-column: 1 / -1;
+        grid-row: 1;
+    }
+
+    .logo img {
+        width: 58px;
+        height: 58px;
+    }
+
+    /* Меню */
+    .nav-menu {
+        padding: 0 10px;
+    }
+
+    .menu {
+        gap: 12px;
+        overflow-x: auto;
+        white-space: nowrap;
+        padding: 8px 0;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: thin;
+        scrollbar-color: #3498db #34495e;
+    }
+
+    .menu::-webkit-scrollbar {
+        height: 3px;
+    }
+
+    .menu::-webkit-scrollbar-track {
+        background: #34495e;
+    }
+
+    .menu::-webkit-scrollbar-thumb {
+        background: #3498db;
+        border-radius: 3px;
+    }
+
+    .menu > li {
+        padding: 8px 0;
+        display: inline-block;
+        float: none;
+    }
+
+    .menu > li > a {
+        font-size: 13px;
+        padding: 5px 0;
+    }
+
+    .has-dropdown > a::after {
+        font-size: 10px;
+    }
+
+    /* Выпадающее меню */
+    .dropdown-menu {
+        min-width: 180px;
+    }
+
+    .dropdown-menu li {
+        padding: 8px 15px;
+    }
+
+    .dropdown-menu li a {
+        font-size: 12px;
+    }
+
+    /* Заголовок страницы */
+    .page-title h1 {
+        font-size: 32px;
+    }
+
+    .page-title p {
+        font-size: 16px;
+    }
+
+    /* Инструкция */
+    .instruction-box {
+        padding: 25px;
+    }
+
+    .instruction-box h2 {
+        font-size: 24px;
+    }
+
+    .instruction-box li {
+        font-size: 14px;
+        gap: 10px;
+    }
+
+    .instruction-box li span {
+        width: 25px;
+        height: 25px;
+        font-size: 12px;
+    }
+
+    /* Поиск */
+    .search-section {
+        padding: 25px;
+    }
+
+    .search-title h3 {
+        font-size: 20px;
+    }
+
+    .search-title p {
+        font-size: 14px;
+    }
+
+    .iin-input-group {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .iin-input {
+        padding: 12px 20px;
+        font-size: 14px;
+        text-align: center;
+    }
+
+    .search-btn {
+        padding: 12px 20px;
+        font-size: 14px;
+        width: 100%;
+    }
+
+    .hint {
+        font-size: 12px;
+    }
+
+    /* Результаты */
+    .results-section {
+        padding: 25px;
+    }
+
+    .results-title {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+
+    .results-title h3 {
+        font-size: 18px;
+    }
+
+    .iin-badge {
+        font-size: 12px;
+        padding: 4px 12px;
+    }
+
+    /* Карточка диплома */
+    .diplom-card {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+        padding: 15px;
+    }
+
+    .diplom-card:hover {
+        transform: translateX(0);
+    }
+
+    .diplom-info {
+        width: 100%;
+        gap: 12px;
+    }
+
+    .diplom-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+    }
+
+    .diplom-details h4 {
+        font-size: 16px;
+    }
+
+    .diplom-details p {
+        font-size: 12px;
+    }
+
+    .diplom-date {
+        font-size: 11px;
+    }
+
+    .download-btn {
+        width: 100%;
+        padding: 10px 20px;
+        font-size: 13px;
+        justify-content: center;
+    }
+
+    /* Сообщение "ничего не найдено" */
+    .no-results {
+        padding: 30px;
+    }
+
+    .no-results p {
+        font-size: 16px;
+    }
+
+    /* Дополнительная информация */
+    .page-content > div:last-child {
+        padding: 15px !important;
+    }
+
+    .page-content > div:last-child p {
+        font-size: 12px !important;
+    }
+
+    /* Подвал */
+    .footer {
+        padding: 20px;
+        margin-top: 40px;
+        font-size: 12px;
+    }
+
+    .footer p:last-child {
+        font-size: 11px !important;
+    }
+}
+
+/* Для очень маленьких телефонов (до 480px) */
+@media screen and (max-width: 480px) {
+    .header-left, .header-right {
+        font-size: 9px;
+    }
+
+    .logo {
+        width: 50px;
+        height: 50px;
+    }
+
+    .logo img {
+        width: 48px;
+        height: 48px;
+    }
+
+    .menu {
+        gap: 10px;
+    }
+
+    .menu > li > a {
+        font-size: 12px;
+    }
+
+    .page-title h1 {
+        font-size: 28px;
+    }
+
+    .instruction-box {
+        padding: 20px;
+    }
+
+    .instruction-box h2 {
+        font-size: 20px;
+    }
+
+    .instruction-box li {
+        font-size: 12px;
+    }
+
+    .search-section {
+        padding: 20px;
+    }
+
+    .diplom-info {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .diplom-icon {
+        margin: 0 auto;
+    }
+}
     </style>
 </head>
 <body>
