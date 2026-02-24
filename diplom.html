@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Как получить диплом | Дарынды Ұрпақ</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f4f7fa;
+        }
+
+        /* Шапка сайта */
+       .header {
+    background-color: #2c3e50;
+    color: white;
+    padding: 15px 30px;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;  /* Три колонки: левая, центр, правая */
+    align-items: center;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+/* Левый текст */
+.header-left {
+    text-align: left;
+    font-size: 16px;
+    line-height: 1.4;
+    font-weight: 300;
+    opacity: 0.9;
+}
+
+/* Правый текст */
+.header-right {
+    text-align: right;
+    font-size: 16px;
+    line-height: 1.4;
+    font-weight: 300;
+    opacity: 0.9;
+}
+
+        /* Логотип */
+        .logo {
+    width: 90px;
+    height: 90px;
+    margin: 0 20px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid #3498db;
+    box-shadow: 0 0 15px rgba(52, 152, 219, 0.3);
+    transition: transform 0.3s;
+}
+.logo:hover {
+    transform: scale(1.05);
+}
+
+.logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+        /* Название сайта */
+        .site-title {
+            font-size: 24px;
+            font-weight: 300;
+            flex-grow: 1;
+        }
+
+        /* Контейнер для меню */
+        .nav-menu {
+            background-color: #34495e;
+            padding: 0 20px;
+        }
+
+        /* Основное меню */
+        .menu {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .menu > li {
+            position: relative;
+            padding: 15px 0;
+        }
+
+        .menu > li > a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            padding: 10px 0;
+            transition: color 0.3s;
+        }
+
+        .menu > li > a:hover {
+            color: #3498db;
+        }
+
+        /* Всплывающее меню */
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: white;
+            min-width: 220px;
+            list-style: none;
+            border-radius: 5px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s;
+            z-index: 100;
+            padding: 10px 0;
+        }
+
+        .menu > li:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .dropdown-menu li {
+            padding: 10px 20px;
+            white-space: nowrap;
+            transition: background-color 0.2s;
+        }
+
+        .dropdown-menu li:hover {
+            background-color: #f0f7ff;
+        }
+
+        .dropdown-menu li a {
+            color: #2c3e50;
+            text-decoration: none;
+            display: block;
+            font-size: 14px;
+        }
+
+        .has-dropdown > a::after {
+            content: " ▼";
+            font-size: 12px;
+            margin-left: 5px;
+            opacity: 0.7;
+        }
+
+        /* ===== ОСНОВНОЙ КОНТЕНТ СТРАНИЦЫ ===== */
+        .page-content {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        /* Заголовок страницы */
+        .page-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .page-title h1 {
+            font-size: 48px;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .page-title h1:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: #3498db;
+            border-radius: 2px;
+        }
+
+        .page-title p {
+            font-size: 18px;
+            color: #7f8c8d;
+        }
+
+        /* Блок инструкции */
+        .instruction-box {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            border-radius: 20px;
+            padding: 40px;
+            color: white;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(52, 152, 219, 0.3);
+        }
+
+        .instruction-box h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        .instruction-box ul {
+            list-style: none;
+        }
+
+        .instruction-box li {
+            margin-bottom: 15px;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .instruction-box li span {
+            background-color: rgba(255,255,255,0.2);
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        /* ===== ПОИСК ПО ИИН ===== */
+        .search-section {
+            background-color: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 40px;
+        }
+
+        .search-title {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .search-title h3 {
+            font-size: 24px;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .search-title p {
+            color: #7f8c8d;
+        }
+
+        /* Поле ввода */
+        .iin-input-group {
+            max-width: 500px;
+            margin: 0 auto 20px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .iin-input {
+            flex: 1;
+            padding: 15px 20px;
+            font-size: 16px;
+            border: 2px solid #ecf0f1;
+            border-radius: 50px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .iin-input:focus {
+            border-color: #3498db;
+        }
+
+        .iin-input.error {
+            border-color: #e74c3c;
+            animation: shake 0.3s;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+
+        .search-btn {
+            padding: 15px 30px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            white-space: nowrap;
+        }
+
+        .search-btn:hover {
+            background-color: #2980b9;
+        }
+
+        .search-btn:disabled {
+            background-color: #bdc3c7;
+            cursor: not-allowed;
+        }
+
+        /* Подсказка */
+        .hint {
+            text-align: center;
+            color: #95a5a6;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+
+        /* ===== РЕЗУЛЬТАТЫ ПОИСКА ===== */
+        .results-section {
+            background-color: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            display: none;
+        }
+
+        .results-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #ecf0f1;
+        }
+
+        .results-title h3 {
+            font-size: 20px;
+            color: #2c3e50;
+        }
+
+        .iin-badge {
+            background-color: #3498db;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        /* Список дипломов */
+        .diploms-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .diplom-card {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 12px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            border-left: 4px solid #3498db;
+        }
+
+        .diplom-card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .diplom-info {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .diplom-icon {
+            width: 50px;
+            height: 50px;
+            background-color: #e1f0fa;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #3498db;
+            font-size: 24px;
+        }
+
+        .diplom-details h4 {
+            color: #2c3e50;
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        .diplom-details p {
+            color: #7f8c8d;
+            font-size: 14px;
+        }
+
+        .diplom-date {
+            font-size: 12px;
+            color: #95a5a6;
+            margin-top: 5px;
+        }
+
+        .download-btn {
+            padding: 10px 25px;
+            background-color: #27ae60;
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+            transition: background-color 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .download-btn:hover {
+            background-color: #219a52;
+        }
+
+        /* Сообщение "ничего не найдено" */
+        .no-results {
+            text-align: center;
+            padding: 50px;
+            color: #7f8c8d;
+        }
+
+        .no-results p {
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+
+        .no-results .hint {
+            color: #95a5a6;
+        }
+
+        /* Подвал */
+        .footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 30px;
+            margin-top: 60px;
+        }
+    </style>
+</head>
+<body>
+
+  <!-- Шапка сайта -->
+<div class="header">
+    <!-- Левый текст (казахский) -->
+    <div class="header-left">"Дарынды Ұрпақ" онлайн олимпиадалар орталығы<br>Астана қ.</div>
+    
+    <!-- Логотип по центру -->
+    <div class="logo">
+        <img src="urpak.png" alt="Лого" style="width: 89px; height: 89px; border-radius: 110%; object-fit: cover;">
+    </div>
+    
+    <!-- Правый текст (русский) -->
+    <div class="header-right">"Дарынды Ұрпақ" центр онлайн олимпиад<br>г. Астана</div>
+</div>
+
+    <!-- Меню -->
+    <div class="nav-menu">
+        <ul class="menu">
+            <li><a href="ур.html">Главная</a></li>
+            <li class="has-dropdown">
+                <a href="#">Подготовка</a>
+                <ul class="dropdown-menu">
+                    <li><a href="math.html">Математика</a></li>
+                    <li><a href="physics.html">Физика</a></li>
+                    <li><a href="informatics.html">Информатика</a></li>
+                    <li><a href="biology.html">Биология</a></li>
+                </ul>
+            </li>
+            <li class="has-dropdown">
+                <a href="#">Услуги</a>
+                <ul class="dropdown-menu">
+                    <li><a href="ent.html">Подготовка к ЕНТ</a></li>
+                    <li><a href="bil.html">Подготовка к БИЛ, НИШ, РФМШ</a></li>
+                    <li><a href="sat.html">SAT</a></li>
+                </ul>
+            </li>
+            <li class="has-dropdown">
+                <a href="#">Информация</a>
+                <ul class="dropdown-menu">
+                    <li><a href="about.html">О компании</a></li>
+                    <li><a href="diplom.html">Как получить диплом</a></li>
+                    <li><a href="payment.html">Оплата</a></li>
+                    <li><a href="https://astanadaryny.kz">Олимпиады Дарын</a></li>
+                    <li><a href="contacts.html">Контакты</a></li>
+                </ul>
+            </li>
+            <li><a href=" https://wa.me/+77785663073">Сборники Тестов</a></li>
+            <li><a href="contacts.html">Контакты</a></li>
+        </ul>
+    </div>
+
+    <!-- Основной контент -->
+    <div class="page-content">
+        
+        <!-- Заголовок -->
+        <div class="page-title">
+            <h1>Как получить диплом</h1>
+            <p>Получите свои дипломы и сертификаты онлайн</p>
+        </div>
+
+        <!-- Инструкция -->
+        <div class="instruction-box">
+            <h2>📋 Инструкция</h2>
+            <ul>
+                <li><span>1</span> Введите ваш ИИН в поле ниже</li>
+                <li><span>2</span> Нажмите кнопку "Найти дипломы"</li>
+                <li><span>3</span> Выберите нужный диплом из списка</li>
+                <li><span>4</span> Нажмите "Открыть диплом" для сохранения</li>
+            </ul>
+        </div>
+
+        <!-- Поиск по ИИН -->
+        <div class="search-section">
+            <div class="search-title">
+                <h3>🔍 Поиск дипломов по ИИН</h3>
+                <p>Введите 12-значный ИИН участника</p>
+            </div>
+
+            <div class="iin-input-group">
+                <input type="text" 
+                       id="iinInput" 
+                       class="iin-input" 
+                       placeholder="Например: 123456789012"
+                       maxlength="12"
+                       pattern="\d*"
+                       inputmode="numeric">
+                <button id="searchBtn" class="search-btn" onclick="searchDiploms()">Найти дипломы</button>
+            </div>
+            <p class="hint">ИИН должен содержать 12 цифр</p>
+        </div>
+
+        <!-- Результаты поиска -->
+        <div id="resultsSection" class="results-section">
+            <div class="results-title">
+                <h3>📄 Найденные дипломы</h3>
+                <span id="iinDisplay" class="iin-badge"></span>
+            </div>
+            <div id="diplomsList" class="diploms-list">
+                <!-- Сюда будут добавляться дипломы -->
+            </div>
+        </div>
+
+        <!-- Дополнительная информация -->
+        <div style="margin-top: 30px; padding: 20px; background-color: #e1f0fa; border-radius: 10px; color: #2c3e50;">
+            <p style="font-size: 14px;">💡 Если вы не находите свои дипломы, обратитесь в службу поддержки:</p>
+            <p style="margin-top: 10px;">📞 +7 (7172) 123-456  |  ✉️ diploms@darynasty.kz</p>
+        </div>
+    </div>
+
+    <!-- Подвал -->
+    <div class="footer">
+        <p>© 2025 "Дарынды Ұрпақ". Все права защищены.</p>
+        <p style="margin-top: 10px; font-size: 14px; opacity: 0.7;">Астана, ул. Умай ана, 14,| +7 (702) 330-6338 | info@darynasty.kz</p>
+    </div>
+
+    <!-- ===== СКРИПТ ДЛЯ РАБОТЫ С ДИПЛОМАМИ ===== -->
+   <script>
+    // База данных дипломов (можно добавить сколько угодно)
+    const diplomsDatabase = {
+        '870126350933': [
+            {
+                id: 1,
+                title: 'Диплом за 3 место на фестивале "Дарын"',
+                olympiad: 'Фестиваль педагогических идей "Дарын"',
+                date: '20 декабря 2025',
+                type: 'Диплом III степени',
+                fileUrl: 'diploms/math_1_870126350933.pdf'
+            },
+        ],
+        '910316350699': [
+            {
+                id: 1,
+                title: 'Диплом за 3 место на фестивале "Дарын"',
+                olympiad: 'Фестиваль педагогических идей "Дарын"',
+                date: '24 декабря 2024',
+                type: 'Диплом III степени',
+                fileUrl: 'diploms/ped_3_910316350699.pdf'
+            },
+        ],
+        '940119301010': [
+            {
+                id: 4,
+                title: 'Диплом за 1 место',
+                olympiad: 'Красавчик',
+                date: '23 февраль 2026',
+                type: 'Диплом I степени',
+                fileUrl: 'diploms/nur_1_940119301010.pdf'
+            },
+        ]
+    };
+
+    // Функция проверки ИИН
+    function validateIIN(iin) {
+        return /^\d{12}$/.test(iin);
+    }
+
+    // Функция поиска дипломов
+    function searchDiploms() {
+        const iinInput = document.getElementById('iinInput');
+        const searchBtn = document.getElementById('searchBtn');
+        const resultsSection = document.getElementById('resultsSection');
+        const diplomsList = document.getElementById('diplomsList');
+        const iinDisplay = document.getElementById('iinDisplay');
+        
+        const iin = iinInput.value.trim();
+        
+        iinInput.classList.remove('error');
+        
+        if (!validateIIN(iin)) {
+            iinInput.classList.add('error');
+            alert('Пожалуйста, введите корректный ИИН (12 цифр)');
+            return;
+        }
+        
+        searchBtn.disabled = true;
+        searchBtn.textContent = 'Поиск...';
+        
+        // Ищем дипломы в базе
+        setTimeout(() => {
+            const userDiploms = diplomsDatabase[iin];
+            
+            // Показываем секцию результатов
+            resultsSection.style.display = 'block';
+            iinDisplay.textContent = `ИИН: ${iin}`;
+            
+            // Очищаем список
+            diplomsList.innerHTML = '';
+            
+            if (userDiploms && userDiploms.length > 0) {
+                // Сортируем по дате (новые сверху)
+                userDiploms.sort((a, b) => new Date(b.date) - new Date(a.date));
+                
+                // Добавляем каждый диплом
+                userDiploms.forEach(diplom => {
+                    const diplomCard = createDiplomCard(diplom);
+                    diplomsList.appendChild(diplomCard);
+                });
+                
+                // Показываем количество найденных дипломов
+                const countMessage = document.createElement('div');
+                countMessage.style.cssText = 'text-align: center; margin-top: 20px; color: #27ae60; font-weight: bold;';
+                countMessage.textContent = `Найдено дипломов: ${userDiploms.length}`;
+                diplomsList.appendChild(countMessage);
+                
+            } else {
+                diplomsList.innerHTML = `
+                    <div class="no-results">
+                        <p>😕 Дипломы не найдены</p>
+                        <p class="hint">Проверьте правильность введенного ИИН или обратитесь в поддержку</p>
+                    </div>
+                `;
+            }
+            
+            // Разблокируем кнопку
+            searchBtn.disabled = false;
+            searchBtn.textContent = 'Найти дипломы';
+            
+            // Прокручиваем к результатам
+            resultsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            
+        }, 800);
+    }
+
+    // Функция создания карточки диплома
+    function createDiplomCard(diplom) {
+        const card = document.createElement('div');
+        card.className = 'diplom-card';
+        
+        // Определяем иконку
+        let icon = '📜';
+        if (diplom.type.includes('I степени')) icon = '🥇';
+        else if (diplom.type.includes('II степени')) icon = '🥈';
+        else if (diplom.type.includes('III степени')) icon = '🥉';
+        else if (diplom.type.includes('Сертификат')) icon = '📄';
+        
+        // Экранируем кавычки
+        const safeTitle = diplom.title.replace(/'/g, "\\'");
+        const safeFileUrl = diplom.fileUrl.replace(/'/g, "\\'");
+        
+        card.innerHTML = `
+            <div class="diplom-info">
+                <div class="diplom-icon">${icon}</div>
+                <div class="diplom-details">
+                    <h4>${diplom.title}</h4>
+                    <p>${diplom.olympiad}</p>
+                    <div class="diplom-date">📅 ${diplom.date} • ${diplom.type}</div>
+                </div>
+            </div>
+            <a href="${safeFileUrl}" target="_blank" class="download-btn">
+               📄 Открыть диплом
+            </a>
+        `;
+        
+        return card;
+    }
+
+    // Функция скачивания диплома
+    function downloadDiplom(fileUrl, title) {
+        // Проверяем, существует ли файл
+        fetch(fileUrl, { method: 'HEAD' })
+            .then(response => {
+                if (response.ok) {
+                    // Файл существует - скачиваем
+                    const link = document.createElement('a');
+                    link.href = fileUrl;
+                    link.download = title + '.pdf';
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                    
+                    // Показываем успешное уведомление
+                    alert(`✅ Скачивание началось: ${title}`);
+                } else {
+                    // Файл не найден
+                    alert(`❌ Файл не найден: ${fileUrl}\nПроверьте, что диплом загружен на сервер.`);
+                }
+            })
+            .catch(error => {
+                alert(`❌ Ошибка при скачивании: ${error.message}`);
+            });
+    }
+
+    // Обработчики событий
+    document.addEventListener('DOMContentLoaded', function() {
+        const iinInput = document.getElementById('iinInput');
+        
+        iinInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                searchDiploms();
+            }
+        });
+
+        iinInput.addEventListener('input', function(e) {
+            this.value = this.value.replace(/[^\d]/g, '');
+        });
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Контакты | Дарынды Ұрпақ</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f4f7fa;
+        }
+
+        /* Шапка сайта */
+         .header {
+    background-color: #2c3e50;
+    color: white;
+    padding: 15px 30px;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;  /* Три колонки: левая, центр, правая */
+    align-items: center;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+/* Левый текст */
+.header-left {
+    text-align: left;
+    font-size: 16px;
+    line-height: 1.4;
+    font-weight: 300;
+    opacity: 0.9;
+}
+
+/* Правый текст */
+.header-right {
+    text-align: right;
+    font-size: 16px;
+    line-height: 1.4;
+    font-weight: 300;
+    opacity: 0.9;
+}
+
+        /* Логотип */
+        .logo {
+    width: 90px;
+    height: 90px;
+    margin: 0 20px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid #3498db;
+    box-shadow: 0 0 15px rgba(52, 152, 219, 0.3);
+    transition: transform 0.3s;
+}
+.logo:hover {
+    transform: scale(1.05);
+}
+
+.logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+        /* Контейнер для меню */
+        .nav-menu {
+            background-color: #34495e;
+            padding: 0 20px;
+        }
+
+        /* Основное меню */
+        .menu {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .menu > li {
+            position: relative;
+            padding: 15px 0;
+        }
+
+        .menu > li > a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            padding: 10px 0;
+            transition: color 0.3s;
+        }
+
+        .menu > li > a:hover {
+            color: #3498db;
+        }
+
+        /* Всплывающее меню */
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: white;
+            min-width: 220px;
+            list-style: none;
+            border-radius: 5px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s;
+            z-index: 100;
+            padding: 10px 0;
+        }
+
+        .menu > li:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .dropdown-menu li {
+            padding: 10px 20px;
+            white-space: nowrap;
+            transition: background-color 0.2s;
+        }
+
+        .dropdown-menu li:hover {
+            background-color: #f0f7ff;
+        }
+
+        .dropdown-menu li a {
+            color: #2c3e50;
+            text-decoration: none;
+            display: block;
+            font-size: 14px;
+        }
+
+        .has-dropdown > a::after {
+            content: " ▼";
+            font-size: 12px;
+            margin-left: 5px;
+            opacity: 0.7;
+        }
+
+        /* ===== ОСНОВНОЙ КОНТЕНТ СТРАНИЦЫ КОНТАКТЫ ===== */
+        .page-content {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        /* Заголовок страницы */
+        .page-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .page-title h1 {
+            font-size: 48px;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .page-title h1:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: #3498db;
+            border-radius: 2px;
+        }
+
+        .page-title p {
+            font-size: 18px;
+            color: #7f8c8d;
+        }
+
+        /* ===== КОНТАКТНАЯ ИНФОРМАЦИЯ ===== */
+        .contacts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        /* Карточка контакта */
+        .contact-card {
+            background-color: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            text-align: center;
+            border-bottom: 4px solid transparent;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-10px);
+            border-bottom-color: #3498db;
+        }
+
+        .contact-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: white;
+            font-size: 32px;
+        }
+
+        .contact-card h3 {
+            color: #2c3e50;
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .contact-position {
+            color: #7f8c8d;
+            font-size: 14px;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #ecf0f1;
+        }
+
+        .contact-phone {
+            margin: 15px 0;
+        }
+
+        .contact-phone a {
+            color: #3498db;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 20px;
+            background-color: #f8f9fa;
+            border-radius: 50px;
+            transition: all 0.3s;
+        }
+
+        .contact-phone a:hover {
+            background-color: #3498db;
+            color: white;
+        }
+
+        .phone-label {
+            font-size: 14px;
+            color: #7f8c8d;
+            margin-top: 5px;
+        }
+
+        /* ===== БЛОК С ПОЧТОЙ ===== */
+        .email-section {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            border-radius: 20px;
+            padding: 40px;
+            color: white;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .email-section h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        .email-section p {
+            font-size: 16px;
+            opacity: 0.9;
+            margin-bottom: 25px;
+        }
+
+        .email-box {
+            display: inline-flex;
+            align-items: center;
+            background-color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .email-box span {
+            color: #2c3e50;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .email-box a {
+            color: #3498db;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 600;
+            padding: 8px 25px;
+            background-color: #e1f0fa;
+            border-radius: 50px;
+            transition: all 0.3s;
+        }
+
+        .email-box a:hover {
+            background-color: #2c3e50;
+            color: white;
+        }
+
+        /* ===== СОЦИАЛЬНЫЕ СЕТИ ===== */
+        .social-section {
+            background-color: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 40px;
+        }
+
+        .social-section h2 {
+            text-align: center;
+            color: #2c3e50;
+            font-size: 28px;
+            margin-bottom: 30px;
+        }
+
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .social-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px 20px;
+            background-color: #f8f9fa;
+            border-radius: 50px;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .social-item:hover {
+            transform: translateX(10px);
+            background-color: #e1f0fa;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            background-color: #3498db;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+        }
+
+        .social-info {
+            flex: 1;
+        }
+
+        .social-name {
+            color: #2c3e50;
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        .social-handle {
+            color: #7f8c8d;
+            font-size: 14px;
+        }
+
+        /* ===== АДРЕС ===== */
+        .address-section {
+            background-color: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .address-section h2 {
+            color: #2c3e50;
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        .address-details {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            color: #555;
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .map-link {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: background-color 0.3s;
+        }
+
+        .map-link:hover {
+            background-color: #2980b9;
+        }
+
+        /* Подвал */
+        .footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 30px;
+            margin-top: 60px;
+        }
+    </style>
+</head>
+<body>
+
+   <!-- Шапка сайта -->
+<div class="header">
+    <!-- Левый текст (казахский) -->
+    <div class="header-left">"Дарынды Ұрпақ" онлайн олимпиадалар орталығы<br>Астана қ.</div>
+    
+    <!-- Логотип по центру -->
+    <div class="logo">
+        <img src="urpak.png" alt="Лого" style="width: 89px; height: 89px; border-radius: 110%; object-fit: cover;">
+    </div>
+    
+    <!-- Правый текст (русский) -->
+    <div class="header-right">"Дарынды Ұрпақ" центр онлайн олимпиад<br>г. Астана</div>
+</div>
+
+
+    <!-- Меню -->
+    <div class="nav-menu">
+        <ul class="menu">
+            <li><a href="ур.html">Главная</a></li>
+            <li class="has-dropdown">
+                <a href="#">Подготовка</a>
+                <ul class="dropdown-menu">
+                    <li><a href="math.html">Математика</a></li>
+                    <li><a href="physics.html">Физика</a></li>
+                    <li><a href="informatics.html">Информатика</a></li>
+                    <li><a href="biology.html">Биология</a></li>
+                </ul>
+            </li>
+            <li class="has-dropdown">
+                <a href="#">Услуги</a>
+                <ul class="dropdown-menu">
+                    <li><a href="ent.html">Подготовка к ЕНТ</a></li>
+                    <li><a href="bil.html">Подготовка к БИЛ, НИШ, РФМШ</a></li>
+                    <li><a href="sat.html">SAT</a></li>
+                </ul>
+            </li>
+            <li class="has-dropdown">
+                <a href="#">Информация</a>
+                <ul class="dropdown-menu">
+                    <li><a href="about.html">О компании</a></li>
+                    <li><a href="diplom.html">Как получить диплом</a></li>
+                    <li><a href="payment.html">Оплата</a></li>
+                    <li><a href="https://astanadaryny.kz">Олимпиады Дарын</a></li>
+                    <li><a href="contacts.html">Контакты</a></li>
+                </ul>
+            </li>
+            <li><a href=" https://wa.me/+77785663073">Сборники Тестов</a></li>
+            <li><a href="contacts.html">Контакты</a></li>
+        </ul>
+    </div>
+
+    <!-- Основной контент -->
+    <div class="page-content">
+        
+        <!-- Заголовок -->
+        <div class="page-title">
+            <h1>Байланыс / Контакты</h1>
+            <p>Свяжитесь с нами удобным способом</p>
+        </div>
+
+        <!-- Контакты по отделам -->
+        <div class="contacts-grid">
+            <!-- Ответственный за онлайн олимпиады -->
+            <div class="contact-card">
+                <div class="contact-icon">🏆</div>
+                <h3>Онлайн олимпиадалар</h3>
+                <div class="contact-position">Ответственный за онлайн олимпиады</div>
+                <div class="contact-phone">
+                    <a href="tel:+77023306338">📞 +7 (702) 330-63-38</a>
+                </div>
+                <div class="phone-label">WhatsApp, Telegram</div>
+            </div>
+
+            <!-- По вопросам сотрудничества -->
+            <div class="contact-card">
+                <div class="contact-icon">🤝</div>
+                <h3>Сотрудничество</h3>
+                <div class="contact-position">По вопросам сотрудничества</div>
+                <div class="contact-phone">
+                    <a href="tel:+77785663073">📞 +7 (778) 566-30-73</a>
+                </div>
+                <div class="phone-label">Партнерство, реклама</div>
+            </div>
+
+            <!-- Финансовый отдел -->
+            <div class="contact-card">
+                <div class="contact-icon">💰</div>
+                <h3>Қаржы бөлімі</h3>
+                <div class="contact-position">Финансовый отдел</div>
+                <div class="contact-phone">
+                    <a href="tel:+77017785561">📞 +7 (701) 778-55-61</a>
+                </div>
+                <div class="phone-label">Оплата, договоры</div>
+            </div>
+        </div>
+
+        <!-- Email секция -->
+        <div class="email-section">
+            <h2>📧 Электронная почта</h2>
+            <p>По всем вопросам можно писать на общую почту</p>
+            <div class="email-box">
+                <span>📨 info@darynasty.kz</span>
+                <a href="mailto:info@darynasty.kz">Написать</a>
+            </div>
+        </div>
+
+        <!-- Социальные сети -->
+        <div class="social-section">
+            <h2>Біз әлеуметтік желіде / Мы в соцсетях</h2>
+            <div class="social-grid">
+                <a href="#" class="social-item" target="_blank">
+                    <div class="social-icon">📱</div>
+                    <div class="social-info">
+                        <div class="social-name">Instagram</div>
+                        <div class="social-handle">@darynasty</div>
+                    </div>
+                </a>
+                
+                <a href="#" class="social-item" target="_blank">
+                    <div class="social-icon">💬</div>
+                    <div class="social-info">
+                        <div class="social-name">Telegram</div>
+                        <div class="social-handle">@darynasty_bot</div>
+                    </div>
+                </a>
+                
+                <a href="#" class="social-item" target="_blank">
+                    <div class="social-icon">👥</div>
+                    <div class="social-info">
+                        <div class="social-name">WhatsApp</div>
+                        <div class="social-handle">+7 (778) 566-30-73</div>
+                    </div>
+                </a>
+                
+                <a href="#" class="social-item" target="_blank">
+                    <div class="social-icon">📘</div>
+                    <div class="social-info">
+                        <div class="social-name">Facebook</div>
+                        <div class="social-handle">/darynasty</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <!-- Адрес -->
+        <div class="address-section">
+            <h2>📍 Мекен-жай / Адрес</h2>
+            <div class="address-details">
+                <span>🏢</span>
+                <span>г. Астана, ул. Умай ана, 14, офис 50</span>
+            </div>
+            <a href="https://go.2gis.com/lBiVm" class="map-link" target="_blank">
+                Открыть в 2 ГИС
+            </a>
+        </div>
+
+        <!-- Кнопка назад -->
+        <div style="text-align: center; margin-top: 40px;">
+            <a href="ур.html" style="color: #3498db; text-decoration: none;">← Вернуться на главную</a>
+        </div>
+    </div>
+
+    <!-- Подвал -->
+    <div class="footer">
+        <p>© 2024 "Дарынды Ұрпақ". Барлық құқықтар қорғалған / Все права защищены.</p>
+    </div>
+
+</body>
+</html>
