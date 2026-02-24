@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Дарынды Ұрпақ | Главная</title>
+    <style>
+        /* Обнуляем отступы */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f4f7fa;
+        }
+
+        /* Шапка сайта */
+        .header {
+    background-color: #2c3e50;
+    color: white;
+    padding: 15px 30px;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;  /* Три колонки: левая, центр, правая */
+    align-items: center;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+/* Левый текст */
+.header-left {
+    text-align: left;
+    font-size: 16px;
+    line-height: 1.4;
+    font-weight: 300;
+    opacity: 0.9;
+}
+
+/* Правый текст */
+.header-right {
+    text-align: right;
+    font-size: 16px;
+    line-height: 1.4;
+    font-weight: 300;
+    opacity: 0.9;
+}
+
+        /* Логотип */
+        .logo {
+    width: 90px;
+    height: 90px;
+    margin: 0 20px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid #3498db;
+    box-shadow: 0 0 15px rgba(52, 152, 219, 0.3);
+    transition: transform 0.3s;
+}
+.logo:hover {
+    transform: scale(1.05);
+}
+
+.logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+        /* Название сайта */
+        .site-title {
+            font-size: 24px;
+            font-weight: 300;
+            flex-grow: 1;
+        }
+
+        /* Контейнер для меню */
+        .nav-menu {
+            background-color: #34495e;
+            padding: 0 20px;
+        }
+
+        /* Основное меню */
+        .menu {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .menu > li {
+            position: relative;
+            padding: 15px 0;
+        }
+
+        .menu > li > a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            padding: 10px 0;
+            transition: color 0.3s;
+        }
+
+        .menu > li > a:hover {
+            color: #3498db;
+        }
+
+        /* Всплывающее меню */
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: white;
+            min-width: 220px;
+            list-style: none;
+            border-radius: 5px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s;
+            z-index: 100;
+            padding: 10px 0;
+        }
+
+        .menu > li:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .dropdown-menu li {
+            padding: 10px 20px;
+            white-space: nowrap;
+            transition: background-color 0.2s;
+        }
+
+        .dropdown-menu li:hover {
+            background-color: #f0f7ff;
+        }
+
+        .dropdown-menu li a {
+            color: #2c3e50;
+            text-decoration: none;
+            display: block;
+            font-size: 14px;
+        }
+
+        .has-dropdown > a::after {
+            content: " ▼";
+            font-size: 12px;
+            margin-left: 5px;
+            opacity: 0.7;
+        }
+
+        /* Блок с картинкой на весь экран */
+        .hero {
+            width: 100%;
+            height: 500px;
+            background-image: url('Tema.jpeg');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: white;
+            padding: 20px;
+            max-width: 800px;
+        }
+
+        .hero-content h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero-content p {
+            font-size: 20px;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        .hero-button {
+            display: inline-block;
+            padding: 15px 40px;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            border-radius: 50px;
+            transition: background-color 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .hero-button:hover {
+            background-color: #2980b9;
+            border-color: white;
+        }
+
+        /* ===== НОВОСТНАЯ ЛЕНТА ===== */
+        .news-section {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 30px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-title h2 {
+            font-size: 36px;
+            color: #2c3e50;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background-color: #3498db;
+        }
+
+        /* Индикатор загрузки */
+        .loading-spinner {
+            text-align: center;
+            padding: 40px;
+            color: #7f8c8d;
+            font-size: 18px;
+        }
+
+        .loading-spinner:after {
+            content: '...';
+            animation: dots 1.5s steps(4, end) infinite;
+        }
+
+        @keyframes dots {
+            0%, 20% { content: '.'; }
+            40% { content: '..'; }
+            60%, 100% { content: '...'; }
+        }
+
+        /* Сетка новостей */
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        /* Карточка новости */
+        .news-card {
+            background-color: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .news-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+
+        /* Изображение новости */
+        .news-image {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        /* Дата новости */
+        .news-date {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: #2c3e50;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        /* Контент новости */
+        .news-content {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .news-category {
+            display: inline-block;
+            background-color: #e1f0fa;
+            color: #3498db;
+            padding: 5px 12px;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            align-self: flex-start;
+        }
+
+        .news-title {
+            font-size: 20px;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+
+        .news-excerpt {
+            color: #7f8c8d;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .news-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #ecf0f1;
+            padding-top: 15px;
+        }
+
+        .news-author {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #7f8c8d;
+            font-size: 13px;
+        }
+
+        .author-avatar {
+            width: 30px;
+            height: 30px;
+            background-color: #3498db;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 16px;
+        }
+
+        .news-link {
+            color: #3498db;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .news-link:hover {
+            color: #2c3e50;
+        }
+
+        /* Сообщение об ошибке */
+        .error-message {
+            text-align: center;
+            padding: 40px;
+            color: #e74c3c;
+            background-color: #fdf3f2;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .retry-button {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 25px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .retry-button:hover {
+            background-color: #2980b9;
+        }
+
+        /* Кнопка "Все новости" */
+        .all-news-btn {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 40px;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            border-radius: 50px;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .btn:hover {
+            background-color: #2980b9;
+            transform: scale(1.05);
+        }
+
+        /* Подвал */
+        .footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 30px;
+            margin-top: 60px;
+        }
+    </style>
+</head>
+<body>
+
+  <!-- Шапка сайта -->
+<div class="header">
+    <!-- Левый текст (казахский) -->
+    <div class="header-left">"Дарынды Ұрпақ" онлайн олимпиадалар орталығы<br>Астана қ.</div>
+    
+    <!-- Логотип по центру -->
+    <div class="logo">
+        <img src="urpak.png" alt="Лого" style="width: 89px; height: 89px; border-radius: 110%; object-fit: cover;">
+    </div>
+    
+    <!-- Правый текст (русский) -->
+    <div class="header-right">"Дарынды Ұрпақ" центр онлайн олимпиад<br>г. Астана</div>
+</div>
+
+    <!-- Меню -->
+    <div class="nav-menu">
+        <ul class="menu">
+            <li><a href="index.html">Главная</a></li>
+            <li class="has-dropdown">
+                <a href="#">Подготовка</a>
+                <ul class="dropdown-menu">
+                    <li><a href="math.html">Математика</a></li>
+                    <li><a href="physics.html">Физика</a></li>
+                    <li><a href="informatics.html">Информатика</a></li>
+                    <li><a href="biology.html">Биология</a></li>
+                </ul>
+            </li>
+            <li class="has-dropdown">
+                <a href="#">Услуги</a>
+                <ul class="dropdown-menu">
+                    <li><a href="ent.html">Подготовка к ЕНТ</a></li>
+                    <li><a href="bil.html">Подготовка к БИЛ, НИШ, РФМШ</a></li>
+                    <li><a href="sat.html">SAT</a></li>
+                </ul>
+            </li>
+            <li class="has-dropdown">
+                <a href="#">Информация</a>
+                <ul class="dropdown-menu">
+                    <li><a href="about.html">О компании</a></li>
+                    <li><a href="diplom.html">Как получить диплом</a></li>
+                    <li><a href="payment.html">Оплата</a></li>
+                    <li><a href="https://astanadaryny.kz">Олимпиады Дарын</a></li>
+                    <li><a href="contacts.html">Контакты</a></li>
+                </ul>
+            </li>
+            <li><a href=" https://wa.me/+77785663073">Сборники Тестов</a></li>
+            <li><a href="contacts.html">Контакты</a></li>
+        </ul>
+    </div>
+
+    <!-- Блок с картинкой -->
+    <div class="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1>Становись лучше с нами</h1>
+            <p>Олимпиады по STEM направлениям</p>
+            <a href="#" class="hero-button">Участвовать →</a>
+        </div>
+    </div>
+
+  
+
+    <!-- ===== НОВОСТНОЙ РАЗДЕЛ (ЗАПОЛНЯЙ САМ) ===== -->
+    <div class="news-section">
+        <div class="section-title">
+            <h2>Соңғы жаңалықтар / Последние новости</h2>
+        </div>
+
+        <!-- НАЧАЛО НОВОСТЕЙ - КОПИРУЙ ЭТОТ БЛОК ДЛЯ НОВОЙ НОВОСТИ -->
+        <div class="news-grid">
+            
+            <!-- НОВОСТЬ 1 -->
+            <div class="news-card">
+                <div class="news-image" style="background-image: url('https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                    <div class="news-date">24 февраля 2024</div>
+                </div>
+                <div class="news-content">
+                    <span class="news-category">Событие</span>
+                    <h3 class="news-title">Открытие нового сезона олимпиад</h3>
+                    <p class="news-excerpt">Приглашаем всех желающих принять участие в онлайн-олимпиадах по математике, физике и информатике. Победители получат дипломы и ценные призы.</p>
+                    <div class="news-meta">
+                        <div class="news-author">
+                            <div class="author-avatar">👩</div>
+                            <span>Айгуль Сериковна</span>
+                        </div>
+                        <a href="#" class="news-link">Подробнее →</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- НОВОСТЬ 2 -->
+            <div class="news-card">
+                <div class="news-image" style="background-image: url('https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                    <div class="news-date">20 февраля 2024</div>
+                </div>
+                <div class="news-content">
+                    <span class="news-category">Подготовка</span>
+                    <h3 class="news-title">Бесплатные вебинары по математике</h3>
+                    <p class="news-excerpt">Каждую субботу проводим бесплатные вебинары для подготовки к олимпиадам. Запись открыта для всех желающих.</p>
+                    <div class="news-meta">
+                        <div class="news-author">
+                            <div class="author-avatar">👨</div>
+                            <span>Нурлан Болатович</span>
+                        </div>
+                        <a href="#" class="news-link">Подробнее →</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- НОВОСТЬ 3 -->
+            <div class="news-card">
+                <div class="news-image" style="background-image: url('https://ulysmedia.kz/cache/imagine/1200_webp/uploads/news/2026/02/23/699c85e626dc5385452413.jpeg.webp');">
+                    <div class="news-date">20 февраля 2026</div>
+                </div>
+                <div class="news-content">
+                    <span class="news-category">Достижения</span>
+                    <h3 class="news-title">Казахстанские дети обыграли канадцев в хоккее</h3>
+                    <p class="news-excerpt">Казахстанская детская команда Astana Team выиграла престижный международный хоккейный турнир Quebec International Pee-Wee Hockey Tournament в Канаде.</p>
+                    <div class="news-meta">
+                        <div class="news-author">
+                            <div class="author-avatar">👩</div>
+                            <span>Динара Маратовна</span>
+                        </div>
+                        <a href="#" class="news-link">Подробнее →</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- НОВОСТЬ 4 -->
+            <div class="news-card">
+                <div class="news-image" style="background-image: url('https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                    <div class="news-date">10 февраля 2024</div>
+                </div>
+                <div class="news-content">
+                    <span class="news-category">Курсы</span>
+                    <h3 class="news-title">Новый курс по программированию</h3>
+                    <p class="news-excerpt">Стартует набор на курс "Python для олимпиадников". Занятия ведут опытные преподаватели.</p>
+                    <div class="news-meta">
+                        <div class="news-author">
+                            <div class="author-avatar">👨</div>
+                            <span>Арман Кайратович</span>
+                        </div>
+                        <a href="#" class="news-link">Подробнее →</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- НОВОСТЬ 5 -->
+            <div class="news-card">
+                <div class="news-image" style="background-image: url('https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                    <div class="news-date">5 февраля 2024</div>
+                </div>
+                <div class="news-content">
+                    <span class="news-category">ЕНТ</span>
+                    <h3 class="news-title">Пробное ЕНТ: результаты</h3>
+                    <p class="news-excerpt">Состоялось пробное тестирование для выпускников. Публикуем результаты и видеоразбор сложных заданий.</p>
+                    <div class="news-meta">
+                        <div class="news-author">
+                            <div class="author-avatar">👩</div>
+                            <span>Айгуль Сериковна</span>
+                        </div>
+                        <a href="#" class="news-link">Подробнее →</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- НОВОСТЬ 6 -->
+            <div class="news-card">
+                <div class="news-image" style="background-image: url('https://images.unsplash.com/photo-1524178232363-1fb2b075b655?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                    <div class="news-date">1 февраля 2024</div>
+                </div>
+                <div class="news-content">
+                    <span class="news-category">Встречи</span>
+                    <h3 class="news-title">День открытых дверей онлайн</h3>
+                    <p class="news-excerpt">Приглашаем родителей и учеников на онлайн-встречу с преподавателями центра. Расскажем о программах и ответим на вопросы.</p>
+                    <div class="news-meta">
+                        <div class="news-author">
+                            <div class="author-avatar">👨</div>
+                            <span>Нурлан Болатович</span>
+                        </div>
+                        <a href="#" class="news-link">Подробнее →</a>
+                    </div>
+                </div>
+            </div>
+            <!-- КОНЕЦ НОВОСТЕЙ -->
+            
+        </div>
+
+        <!-- Кнопка "Все новости" (если сделаешь отдельную страницу) -->
+        <div class="all-news-btn">
+            <a href="news.html" class="btn">Барлық жаңалықтар / Все новости →</a>
+        </div>
+    </div>
+
+    <!-- Подвал -->
+    <div class="footer">
+        <p>© 2024 "Дарынды Ұрпақ". Барлық құқықтар қорғалған / Все права защищены.</p>
+    </div>
+
+
+</body>
+</html>
